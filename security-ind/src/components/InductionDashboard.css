@@ -1,0 +1,101 @@
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #e9ecef;
+  background-size: cover;
+}
+
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #333;
+  margin-top: 5px;
+  font-size: 42px;
+}
+
+h4 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="search"] {
+  flex: 1;
+  font-size: 16px;
+  padding: 12px;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 10px;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+button {
+  padding: 12px 20px;
+  background: #007bff;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  margin: 16px 0;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card p {
+  margin: 6px 0;
+  color: #444;
+  font-size: 15px;
+}
+
+.card strong {
+  color: #111;
+}
+
+.list {
+  margin-top: 20px;
+}
+
+
+.no-pending {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+  margin-top: 20px;
+}

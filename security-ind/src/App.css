@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  background-image: url('/assets/bluescope_pic.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: blur(1px); 
+  opacity: 0.8;      
+}
