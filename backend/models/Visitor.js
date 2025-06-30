@@ -8,6 +8,7 @@ const VisitorSchema = new mongoose.Schema({
   token: String,  
   timeOut: Date,
   inductionCompleted: Boolean,
+  timeOut: { type: Date, default: Date.now },
   timeIn: { type: Date, default: Date.now }
 });
 

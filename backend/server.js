@@ -49,7 +49,7 @@ app.post('/api/visitors/create-pass', async (req, res) => {
 
 
 app.get('/api/visitors/passes', async (req, res) => {
-  const visitors = await Visitor.find();
+  const visitors = await Visitor.find({ timeOut: null });
   res.json(visitors);
 });
 
@@ -62,3 +62,15 @@ app.get('/api/visitors/search/:token', async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Visitor server running on port ${PORT}`));
+
+// Mark visitor as left (timeOut)
+app.patch('/api/visitors/mark-out/:token', async (req, res) => {
+  const visitor = await Visitor.findOneAndUpdate(
+    { token: req.params.token, timeOut: null },
+    { timeOut: new Date() },
+    { new: true }
+  );
+
+  if (!visitor) return res.status(404).json({ message: 'Visitor not found or already marked out.' });
+  res.json(visitor);
+});
