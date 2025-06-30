@@ -3,21 +3,23 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/CurrentPeople.css';
 
-
 function CurrentPeople() {
   const [people, setPeople] = useState([]);
   const [searchToken, setSearchToken] = useState('');
   const [searchResult, setSearchResult] = useState(null);
   const navigate = useNavigate();
 
+  // Fetch currently inside people
+  const fetchPeople = async () => {
+    const res = await axios.get('http://localhost:5000/api/visitors/passes');
+    setPeople(res.data);
+  };
+
   useEffect(() => {
-    const fetchPeople = async () => {
-      const res = await axios.get('http://localhost:5000/api/visitors/passes');
-      setPeople(res.data);
-    };
     fetchPeople();
   }, []);
 
+  // Search by token
   const handleSearch = async () => {
     try {
       const res = await axios.get(`http://localhost:5000/api/visitors/search/${searchToken.trim()}`);
@@ -25,6 +27,17 @@ function CurrentPeople() {
     } catch (err) {
       alert('No visitor found for this token.');
       setSearchResult(null);
+    }
+  };
+
+  // Mark visitor as out
+  const handleMarkOut = async (token) => {
+    try {
+      await axios.patch(`http://localhost:5000/api/visitors/mark-out/${token}`);
+      alert('Visitor marked as left.');
+      fetchPeople(); // Refresh list after marking out
+    } catch (err) {
+      alert('Could not mark visitor as out.');
     }
   };
 
@@ -58,6 +71,7 @@ function CurrentPeople() {
           <p><strong>Name:</strong> {person.name}</p>
           <p><strong>Token:</strong> {person.token}</p>
           <p><strong>Time In:</strong> {new Date(person.timeIn).toLocaleString()}</p>
+          <button onClick={() => handleMarkOut(person.token)}>Mark as Out</button>
         </div>
       ))}
 
@@ -68,6 +82,7 @@ function CurrentPeople() {
           <p><strong>Token:</strong> {person.token}</p>
           <p><strong>Time In:</strong> {new Date(person.timeIn).toLocaleString()}</p>
           <p><strong>Induction Status:</strong> {person.inductionCompleted ? 'Completed' : 'Pending'}</p>
+          <button onClick={() => handleMarkOut(person.token)}>Mark as Out</button>
         </div>
       ))}
 
