@@ -45,7 +45,7 @@ function InductionDashboard() {
           value={searchToken}
           onChange={(e) => setSearchToken(e.target.value)}
         />
-        <button onClick={handleSearch}>Search by Token</button>
+        <button1 onClick={handleSearch}>Search by Token</button1>
       </div>
 
       {searchResult && (
